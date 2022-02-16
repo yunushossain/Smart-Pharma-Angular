@@ -1,0 +1,69 @@
+<div class="content-wrapper">
+
+    <div class="container-fluid px-1 py-5 mx-auto ">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <p class="blue-text"></p>
+                <div class="card">
+                    <div class="container cal-mt-4" style="width: 400px; ">
+                        <h2 style="text-align: center;" class=""> Add Customer</h2>
+
+                        <form (ngSubmit)="isSave? saveCustomer():updateCustomer()">
+                            <div class=" form-group text-left">
+
+                                <input type="hidden" class="form-control" id="cid" name="cid"
+                                    [(ngModel)]="customer.cid">
+
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label for="cname" class="form-label">Customer Name :</label>
+                                <input type="text" class="form-control" id="cname" name="cname"
+                                    [(ngModel)]="customer.cname">
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label for="cemail" class="form-label">Customer Email :</label>
+                                <input type="text" class="form-control" id="cemail" name="cemail"
+                                    [(ngModel)]="customer.cemail">
+
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label for="ccontact" class="form-label">Customer Contact :</label>
+                                <input type="text" class="form-control" id="ccontact" name="ccontact"
+                                    [(ngModel)]="customer.ccontact">
+
+                            </div>
+
+                            <div class="form-group text-left">
+                                <label for="caddress" class="form-label">Customer Address</label>
+                                <textarea type="text" class="form-control" id="caddress" name="caddress"
+                                    [(ngModel)]="customer.caddress"> </textarea>
+
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label for="cdname" class="form-label">Doctor Name :</label>
+                                <input type="text" class="form-control" id="cdname" name="cdname"
+                                    [(ngModel)]="customer.cdname">
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label for="cdaddress" class="form-label">Doctor Address :</label>
+                                <textarea type="text" class="form-control" id="cdaddress" name="cdaddress"
+                                    [(ngModel)]="customer.cdaddress"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mb-4">{{ isSave? 'Save' :
+                                'Update'}}</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div style="height: 80px;">
+            </div>
+        </div>
+    </div>
+</div>

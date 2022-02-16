@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 mt-5" style="background-color: white;">
+
+        <div style="  text-align: center;">
+          <h3><b>Medicine list</b></h3>
+          <div class="col-md-4 float-end">
+            <form class="d-flex mb-2">
+              <input class="form-control me-2" type="search" [(ngModel)]="searchQuery" name="searchText"
+                placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit" (click)="searchItems()">Search</button>
+            </form>
+          </div>
+          <table class="table  table-bordered border-primary table-sm" style="background-color: white;   height:auto ;">
+            <thead class="thead">
+              <tr>
+                <th> ID</th>
+                <th>Medicine Name</th>
+                <th>Generic Name</th>
+                <th>Paking</th>
+                <th>Supplier</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medi of medicines; index as i;">
+                <td>{{medi.mid}}</td>
+                <td>{{medi.mname}}</td>
+                <td>{{medi.mgname}}</td>
+                <td>{{medi.mpaking}}</td>
+                <td>{{medi.sname}}</td>
+                <td>
+                  <button type="buuton" (click)="editMedicine(medi)" class="btn btn-warning">Edit</button>
+                  ||
+                  <button type="button" (click)="deleteMedicine(medi)" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>

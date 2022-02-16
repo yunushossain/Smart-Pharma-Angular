@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+  <div class="container" >
+    <div class="row justify-content-center">
+      <div class="col-md-12 mt-5" style="background-color: white;">
+  
+        <div style="  text-align: center;">
+          <h3><b>Customer Information</b></h3>
+          <div class="col-md-4 float-end">
+            <form class="d-flex mb-2">
+              <input class="form-control me-2" type="search" [(ngModel)]="searchQuery" name="searchText" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit" (click)="searchItems()">Search</button>
+            </form>
+          </div>
+        <table class="table  table-bordered border-primary table-sm" style="background-color: white;   height:auto ;">
+          <thead class="thead" >
+            <tr>
+              <th>Customer ID</th>
+              <th>Customer Name</th>
+              <th>Customer Contact</th>
+              <th>Customer Address</th>
+              <th>Doctor Name</th>
+              <th>Doctor Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cus of Customer; index as i;">
+              <td>{{cus.cid}}</td>
+              <td>{{cus.cname}}</td>
+              <td>{{cus.ccontact}}</td>
+              <td>{{cus.caddress}}</td>
+              <td>{{cus.cdname}}</td>
+              <td>{{cus.cdaddress}}</td>
+         
+              <td>
+                  <button type="button" (click)="editCustomer(cus)" class="btn btn-warning">Edit</button>
+                  ||
+                  <button type="button" (click)="deleteCustomer(cus)" class="btn btn-danger">Delete</button>
+              </td>
+          </tr>
+          </tbody>
+  
+        </table>
+  
+      </div>
+    </div>
+  </div>
+  </div>

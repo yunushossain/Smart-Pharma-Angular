@@ -1,0 +1,74 @@
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+        <div class="container">
+  
+            <div class="col col-md-12 mt-4">
+                <h1>Manage Medecine Stock</h1>
+              </div>
+          <!-- header section -->
+        
+          <!-- header section end -->
+  
+          <!-- form content -->
+          <div class="row">
+  
+            <div class="col-md-12 form-group form-inline">
+              <label class="font-weight-bold" for="">Search :&emsp;</label>
+              <input type="text" class="form-control" id="by_name" placeholder="By Medicine Name" onkeyup="searchMedicineStock(this.value, 'NAME');">
+              &emsp;<input type="text" class="form-control" id="by_generic_name" placeholder="By Generic Name" onkeyup="searchMedicineStock(this.value, 'GENERIC_NAME');">
+              &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchMedicineStock(this.value, 'SUPPLIER_NAME');">
+              &emsp;<button class="btn btn-danger font-weight-bold" onclick="searchMedicineStock('0', 'QUANTITY');">Out of Stock</button>
+              &emsp;<button class="btn btn-warning font-weight-bold" onclick="searchMedicineStock('', 'EXPIRY_DATE');">Expired</button>
+              &emsp;<button class="btn btn-success font-weight-bold" onclick="cancel();"><i class="fa fa-refresh"></i></button>
+            </div>
+  
+  
+            <div class="col col-md-12">
+              <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #02b6ff;">
+            </div>
+  
+            <div class="col col-md-12 table-responsive">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-striped table-hover">
+                      <thead>
+                          <tr>
+                              <th style="width: 1%;">SL.</th>
+                              <th style="width: 14%;">Medicine Name</th>
+                      <th style="width: 5%;">Packing</th>
+                      <th style="width: 14%;">Generic Name</th>
+                      <th style="width: 10%;">Batch ID</th>
+                      <th style="width: 8%;">Ex. Date (mm/yy)</th>
+                              <th style="width: 15%;">Supplier</th>
+                      <th style="width: 7%;">Qty.</th>
+                      <th style="width: 8%;">M.R.P.</th>
+                      <th style="width: 8%;">Rate</th>
+                      <th style="width: 10%;">Action</th>
+                          </tr>
+                      </thead>
+                  <tbody id="medicines_stock_div">
+              <tr *ngFor="let purch of purchases; index as i;">
+                  <td>{{purch.pid}}</td>
+                  <td>{{purch.mname}}</td>
+                  <td>{{purch.mpaking}}</td>
+                  <td>{{purch.mgname}}</td>
+                  <td>{{purch.batchid}}</td>
+                  <td>{{purch.expdate}}</td>
+                  <td>{{purch.sname}}</td>
+                  <td>{{purch.quantity}}</td>
+                  <td>{{purch.mrp}}</td>
+                  <td>{{purch.rate}}</td>
+                  <td></td>
+              </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+  
+          </div>
+          <!-- form content end -->
+          <hr style="border-top: 2px solid #ff5252;">
+        </div>
+      </div>
+
+</div>

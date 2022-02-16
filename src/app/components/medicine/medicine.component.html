@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+
+    <div class="container-fluid px-1 py-5 mx-auto ">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <p class="blue-text"></p>
+                <div class="card" >
+                    <div class="container cal-mt-4" style="width: 450px; ">
+                        <h2 style="text-align: center;" class=""> Add Medicine</h2>
+
+                        <form (ngSubmit)="isSave? saveMedicine():updateMedicine()">
+
+                            <div class=" form-group text-left">
+                                <input type="hidden" class="form-control" id="mid" name="mid"
+                                    [(ngModel)]="medicine.mid">
+
+                            </div>
+                            <div class=" form-group text-left">
+                                <label for="mname" class="form-label">Medicine Name :</label>
+                                <input type="text" class="form-control" id="mname" name="mname"
+                                    [(ngModel)]="medicine.mname">
+
+                            </div>
+
+                           
+
+                            <div class="form-group text-left">
+                                <label for="mgname" class="form-label">Generic Name :</label>
+                                <input type="text" class="form-control" id="mgname" name="mgname"
+                                    [(ngModel)]="medicine.mgname">
+
+                            </div>
+                            
+                            <div class=" form-group text-left">
+                                <label for="mpaking" class="form-label">Paking :</label>
+                                <input type="text" class="form-control" id="mpaking" name="mpaking"
+                                    [(ngModel)]="medicine.mpaking">
+
+                            </div>
+
+                            <div class=" form-group text-left">
+                                <label class="form-label">Supplier :</label>
+                                <select name="sname" id="sname" class="form-control" [(ngModel)]="selectedSupplier"
+                                    (ngModelChange)="onRowClick()">
+                                    <option value="">-select Supplier-</option>
+                                    <option *ngFor="let sup of supplierItems; index as i;"
+                                        [selected]="medicine.sname==sup.sname" value="{{sup.sname}}">{{sup.sname}}
+                                    </option>
+
+                                </select>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-4">{{ isSave? 'Save' :
+                                'Update'}}</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div style="height: 100px;">
+            </div>
+        </div>
+    </div>
+</div>

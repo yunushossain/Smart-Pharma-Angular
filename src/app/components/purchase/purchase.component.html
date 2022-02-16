@@ -1,0 +1,183 @@
+<div class="content-wrapper">
+  <div class=" container-fluid" style="width: 90%;">
+    <div class="container">
+
+      <!-- header section -->
+      <div class="col col-md-12">
+        <h1>Add Purchese</h1>
+      </div>
+      <!-- header section end -->
+
+      <!-- form content -->
+      <form (ngSubmit)="savePurchase()">
+        <div class="row">
+          <!-- manufacturer details content -->
+          <div class="col col-md-2 form-group">
+
+            <input type="hidden" class="form-control" id="pid" name="pid" [(ngModel)]="purchase.pid">
+
+          </div>
+
+          <div class="row col col-md-12">
+
+            <div class="col col-md-4 form-group">
+              <label class="form-label">Supplier :</label>
+              <select name="sname" id="sname" class="form-control" [(ngModel)]="selectedSupplier"
+                (ngModelChange)="onRowClick()">
+                <option value="">-select Supplier-</option>
+                <option *ngFor="let sup of supplierItems; index as i;" [selected]="purchase.sname==sup.sname"
+                  value="{{sup.sname}}">{{sup.sname}}
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="col col-md-2 form-group">
+              <label class="font-weight-bold" for=" pinvonum">Invoice Number :</label>
+              <input type="number" class="form-control" placeholder="Invoice Number" id="pinvonum" name="pinvonum"
+                [(ngModel)]="purchase.pinvonum">
+
+            </div>
+
+
+
+            <div class="col col-md-2 form-group">
+              <label class="font-weight-bold" for="ppaytype">Payment Type :</label>
+              <select id="ppaytype" name="ppaytype" class="form-control" id="ppaytype" [(ngModel)]="purchase.ppaytype">
+                <option value="Cash Payment">Cash Payment</option>
+                <option value="Net Banking">Net Banking</option>
+                <option value="Payment Due">Payment Due</option>
+              </select>
+            </div>
+
+            <div class="col col-md-2 form-group">
+              <label class="font-weight-bold" for="pstdate">Date :</label>
+              <input type="date" class="datepicker form-control hasDatepicker" id=" pstdate" name=" pstdate"
+                [(ngModel)]="purchase.pstdate">
+
+            </div>
+
+          </div>
+
+          <div class="row col col-md-12">
+            <div class="col col-md-2 font-weight-bold" style="color: green; cursor:pointer">
+              <i class="fa fa-plus"></i>&nbsp;Add New Supplier
+            </div>
+          </div>
+          <!-- supplier details content end -->
+
+          <div class="col col-md-12">
+            <hr class="col-md-12" style="padding: 0px; border-top: 2px solid #02b6ff;">
+          </div>
+
+          <!-- add medicines -->
+          <div class="row col col-md-12 font-weight-bold">
+            <div class="col col-md-2">Medicine Name</div>
+            <div class="col col-md-1">Packing</div>
+            <div class="col col-md-2">Batch ID</div>
+            <div class="col col-md-1">Ex. Date (mm/yy)</div>
+            <div class="col col-md-1">Quantity</div>
+            <div class="col col-md-1">MRP</div>
+            <div class="col col-md-1">Rate</div>
+            <div class="row col col-md-3">
+              <div class="col col-md-7">Amount</div>
+
+            </div>
+          </div>
+
+          <div class="col col-md-12">
+            <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #02b6ff;">
+          </div>
+
+          <div  id="purchase_medicine_list_div">
+            <div class="row col col-md-12">
+
+              <div class="col col-md-2">
+
+                <input type="text" class="form-control" placeholder="Madecine Name" id="mname" name="mname"
+                  [(ngModel)]="purchase.mname">
+
+              </div>
+
+              <div class="col col-md-1">
+                <input type="text" class="form-control" name="mpaking" id="mpaking"
+                  [(ngModel)]="purchase.mpaking">
+              </div>
+
+              <div class="col col-md-2">
+                <input type="text" class="form-control" name=" batchid" id="batchid"
+                  [(ngModel)]="purchase.batchid">
+              </div>
+
+              <div class="col col-md-1">
+                <input type="text" class="form-control" name=" expdate" id=" expdate"
+                  [(ngModel)]="purchase.expdate">
+              </div>
+
+              <div class="col col-md-1">
+                <input type="number" class="form-control" (input)="calculateAmount(purchase)" placeholder="0"
+                  name="quantity" id=" quantity" [(ngModel)]="purchase.quantity">
+              </div>
+
+              <div class="col col-md-1">
+                <input type="number" class="form-control" name="mrp" id="mrp" [(ngModel)]="purchase.mrp">
+              </div>
+
+              <div class="col col-md-1">
+                <input type="number" class="form-control" name="rate" [(ngModel)]="purchase.rate">
+              </div>
+
+              <div class="row col col-md-3">
+                <div class="col col-md-7"><input type="text" class="form-control" id="amount" name="amount"
+                    value="{{purchase.quantity * purchase.rate}}" disabled>
+                </div>
+
+              </div>
+            </div><br>
+            <div class="row col col-md-8">
+              <div class="col col-md-4"><label for="mgname" class="font-weight-bold">&nbsp;If new medicine, generic
+                  name : </label></div>
+              <div class="col col-md-8">
+                <input type="text" class="form-control" placeholder="Generic Name" name="mgname" id="gname"
+                  [(ngModel)]="purchase.mgname">
+
+              </div>
+            </div>
+
+
+            <!-- end medicines -->
+
+            <div class="row col col-md-12">
+              <div class="col col-md-10"></div>
+              <div class="col col-md-2 form-group float-right">
+                <label class="font-weight-bold" for="gtotal">Grand Total :</label>
+                <input type="text" class="form-control" id="gtotal" name="gtotal" [(ngModel)]="purchase.gtotal"
+                  value="{{purchase.quantity * purchase.rate}}" disabled>
+              </div>
+            </div>
+          </div>
+
+          <!-- button -->
+
+          <div class="row col col-md-12">
+            <div class="col col-md-5"></div>
+            <div class="col col-md-2 form-group">
+              <button type="submit" class="btn btn-primary form-control">ADD</button>
+            </div>
+            <div class="col col-md-5"></div>
+          </div>
+
+          <!-- closing button -->
+
+          <div id="purchase_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center"
+            style="font-family: sans-serif;"></div>
+
+
+          <!-- form content end -->
+          <hr style="border-top: 2px solid #ff5252;">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

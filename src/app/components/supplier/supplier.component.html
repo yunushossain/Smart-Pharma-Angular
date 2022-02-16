@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+
+  <div class="container-fluid px-1 py-5 mx-auto ">
+      <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+              <p class="blue-text"></p>
+              <div class="card">
+                  <div class="container cal-mt-4" style="width: 400px; ">
+                      <h2 style="text-align: center;" class=""> Add Supplier</h2>
+
+                      <form (ngSubmit)="isSave? addSupplier():updateSupplier()">
+                          <div class=" form-group text-left">
+                             
+                              <input type="hidden" class="form-control" id="sid" name="sid"
+                                  [(ngModel)]="supplier.sid">
+
+                          </div>
+
+                          <div class=" form-group text-left">
+                              <label for="sname" class="form-label">Supplier Name :</label>
+                              <input type="text" class="form-control" id="sname" name="sname"
+                                  [(ngModel)]="supplier.sname">
+                          </div>
+
+                          <div class=" form-group text-left">
+                              <label for="semail" class="form-label">Supplier Email :</label>
+                              <input type="email" class="form-control" id="semail" name="semail"
+                                  [(ngModel)]="supplier.semail">
+
+                          </div>
+
+                         
+
+                          <div class=" form-group text-left">
+                              <label for="scontact" class="form-label">Supplier Contact :</label>
+                              <input type="text" class="form-control" id="scontact" name="scontact"
+                                  [(ngModel)]="supplier.scontact">
+                          </div>
+
+                          <div class=" form-group text-left">
+                              <label for="saddress" class="form-label">Supplier Address :</label>
+                              <textarea type="text" class="form-control" id="saddress" name="saddress"
+                                  [(ngModel)]="supplier.saddress"></textarea>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary mb-4">{{ isSave? 'Save' :
+                              'Update'}}</button>
+                      </form>
+                  </div>
+
+              </div>
+          </div>
+          <div style="height: 100px;">
+          </div>
+      </div>
+  </div>
+</div>
