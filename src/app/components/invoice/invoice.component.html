@@ -17,12 +17,13 @@
           <div>
             <input id="invid" type="hidden" class="form-control" name="invid" [(ngModel)]="invoice.invid">
           </div>
-        
+
 
           <div class="col col-md-3 form-group">
             <label class="font-weight-bold" for="cname">Customer Name :</label>
-            <input type="search" class="form-control ds-input" id="cname" name="cname" [(ngModel)]="invoice.cname"  placeholder="Customer name" disabled>
-            
+            <input type="search" class="form-control ds-input" id="cname" name="cname" [(ngModel)]="invoice.cname"
+              placeholder="Customer name" disabled>
+
           </div>
 
 
@@ -101,7 +102,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                   
+
                   </div>
                 </div>
               </div>
@@ -149,7 +150,7 @@
           <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #02b6ff;">
         </div>
 
-        <div *ngFor="let item of allinvoices; index as i" class=" mb-3" >
+        <div *ngFor="let item of allinvoices; index as i" class=" mb-3">
 
           <div class="row col col-md-12">
             <div class="col-md-2">
@@ -161,7 +162,7 @@
                 [(ngModel)]="allinvoices[i].batchid" disabled></div>
 
             <div class="col col-md-1"><input type="number" class="form-control" id="avalaquantity" name="avalaquantity"
-                [(ngModel)]="allinvoices[i].batchid" disabled></div>
+                [(ngModel)]="allinvoices[i].avalaquantity" disabled></div>
 
 
             <div class="col col-md-1"><input type="text" class="form-control" id="expdate" name="expdate"
@@ -169,7 +170,7 @@
 
 
             <div class="col col-md-1">
-              <input type="number" class="form-control" id="invquantity" name="invquantity"
+              <input type="number" class="form-control" id="invquantity" name="invquantity" max="{{allinvoices[i].avalaquantity}}"  (input)="calculatePrice(i)"
                 [(ngModel)]="allinvoices[i].invquantity">
             </div>
 
@@ -178,17 +179,63 @@
 
 
             <div class="col col-md-1">
-              <input type="number" class="form-control" id="discount" name="discount" [(ngModel)]="allinvoices[i].discount">
+              <input type="number" class="form-control" id="discount" name="discount"  (input)="calculatePrice(i)"
+                [(ngModel)]="allinvoices[i].discount">
             </div>
 
             <div class="col col-md-1"><input type="number" class="form-control" id="invtotal" name="invtotal"
                 [(ngModel)]="allinvoices[i].invtotal" disabled></div>
 
             <div class="col col-md-2">
-              <button (click)="addrow()" class="btn btn-primary mr-2">
-                <i class="fa fa-plus"></i>
-              </button>
-              <button  (click)="deleterow()" class="btn btn-danger">
+              <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#modalSearch">
+                <i class="fa fa-edit"></i>
+                
+            </button>
+            <div class="modal fade" id="modalSearch" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Customer List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="col-md-8 float-end">
+                      <form class="d-flex mb-2">
+                        <input class="form-control me-2" type="search" (input)="searchPurchase()"
+                          name="searchCustomerText" placeholder="Search" aria-label="Search" [(ngModel)]="querypurchase">
+                      </form>
+                    </div>
+
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <td> Name</td>
+                          <td>Address</td>
+                          <td>Contact</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let purchase of purchases; index as i" data-dismiss="modal" (click)="setSelectedMedechine(purchase,i)">
+                          <td>{{purchase.mname}}</td>
+                          <td>{{purchase.Address}}</td>
+                          <td>{{purchase.Contact}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <button (click)="deleterow(i)" class="btn btn-danger">
                 <i class="fa fa-trash"></i>
               </button>
             </div>
@@ -198,24 +245,34 @@
 
         <div class="row col col-md-12 mt-2">
 
-          <div class="col col-md-6 form-group"></div>
+          <div class="col col-md-6 form-group">
+
+            <div id="save_button" class="col col-md-3 form-group float-left">
+
+              <label class="font-weight-bold" for=""></label>
+              <button class="btn btn-success form-control font-weight-bold" (click)="addrow()">Add</button>
+            </div>
+
+          </div>
+
+
 
           <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="invgtotal">Total Amount:</label>
             <input type="number" class="form-control" value="0" name="invgtotal" id="invgtotal"
-              [(ngModel)]="invoice.invgtotal" disabled>
+              [(ngModel)]="totalAmount" disabled>
           </div>
 
           <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="invdistotal">Total Discount :</label>
             <input type="number" class="form-control" value="0" id="invdistotal" name="invdistotal"
-              [(ngModel)]="invoice.invgtotal" disabled>
+              [(ngModel)]="totalDiscount" disabled>
           </div>
 
           <div class="col col-md-2 form-group float-right">
             <label class="font-weight-bold" for="invnettotal">Net Total :</label>
             <input type="number" class="form-control" value="0" id="invnettotal" name="invnettotal"
-              [(ngModel)]="invoice.invnettotal" disabled>
+              [(ngModel)]="netTotal" disabled>
           </div>
 
         </div>
@@ -227,6 +284,7 @@
         <div class="row col col-md-12">
 
           <div id="save_button" class="col col-md-2 form-group float-right">
+
             <label class="font-weight-bold" for=""></label>
             <button class="btn btn-success form-control font-weight-bold" onclick="addInvoice();">Save</button>
           </div>

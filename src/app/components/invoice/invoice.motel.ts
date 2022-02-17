@@ -14,6 +14,7 @@ export class Invoice {
     invquantity: number = 0;
     mrp: number = 0;
     discount: number = 0;
+    discountamount: number = 0;
     invtotal: number = 0;
     invgtotal: number = 0;
     invdistotal: number = 0;
