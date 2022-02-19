@@ -13,6 +13,8 @@ import { MedicineComponent } from './components/medicine/medicine.component';
 import { MedicinelistComponent } from './components/medicinelist/medicinelist.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { PurchaselistComponent } from './components/purchaselist/purchaselist.component';
+import { PurchasereportComponent } from './components/purchasereport/purchasereport.component';
+import { SalesreportComponent } from './components/salesreport/salesreport.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SupplierComponent } from './components/supplier/supplier.component';
 import { SupplierlistComponent } from './components/supplierlist/supplierlist.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
     {path: "", component: DashboardComponent},
     {path: "purchase", component:PurchaseComponent},
     {path: "purchaselist", component:PurchaselistComponent},
+    {path: "purchasereport", component:PurchasereportComponent},
+    {path: "salesreport", component:SalesreportComponent},
     {path: "medecinestock", component:MedecinestockComponent},
     {path: "supplier", component:SupplierComponent},
     {path: "customer", component:CustomerComponent},

@@ -18,6 +18,8 @@ export class PurchaseComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    console.log(this.gtotal);
+    
 
     this.getSupplier();
     if (history.state.isSave != undefined) {
@@ -30,6 +32,8 @@ export class PurchaseComponent implements OnInit {
    
 
   }
+
+  
 
  
 
@@ -50,6 +54,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   savePurchase() {
+    console.log(this.purchase.gtotal);
     const headers = { 'content-type': 'application/json' };
     this.http.post<any>("http://localhost:8082/purchase/save", JSON.stringify(this.purchase), { headers: headers })
       .subscribe(data => {

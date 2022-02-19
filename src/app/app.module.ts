@@ -22,6 +22,8 @@ import { CustomerlistComponent } from './components/customerlist/customerlist.co
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { PurchaselistComponent } from './components/purchaselist/purchaselist.component';
 import { MedecinestockComponent } from './components/medecinestock/medecinestock.component';
+import { PurchasereportComponent } from './components/purchasereport/purchasereport.component';
+import { SalesreportComponent } from './components/salesreport/salesreport.component';
 
 
 
@@ -47,7 +49,9 @@ import { MedecinestockComponent } from './components/medecinestock/medecinestock
            CustomerlistComponent,
            PurchaseComponent,
            PurchaselistComponent,
-           MedecinestockComponent
+           MedecinestockComponent,
+           PurchasereportComponent,
+           SalesreportComponent
   
   
   ],

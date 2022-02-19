@@ -95,6 +95,10 @@
     cursor: pointer;
     height: 50px;
   }
+
+ .content{
+   margin-top: -15px;
+ }
   
   .todays-report {
     margin: 2% 0;
