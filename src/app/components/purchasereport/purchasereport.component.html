@@ -1,1 +1,82 @@
-<p>purchasereport works!</p>
+<div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="container">
+  
+        <!-- header section -->
+        <div class="container" style="display: flex;">
+          <div class="" text-center style=" margin-top: 5px;">
+            <!-- <span class="h6"><i class="fa fa-home text-dark"></i></span>-->
+  
+          </div>
+          <div style="margin-left: 20px;">
+  
+            <h3>Purchase Report</h3>
+            <h6>Showing Purchase Report</h6>
+          </div>
+  
+  
+        </div>
+        <!-- header section end -->
+        <hr style="border-top: 2px solid #ff5252;">
+        <!-- form content -->
+        <div class="row">
+  
+          <div class="col-md-12 form-group form-inline">
+            <label class="font-weight-bold " for="">Start Date :&emsp;</label>
+            <input type="date" class="form-control mr-2" id="start_date">
+            &emsp;
+            <label class="font-weight-bold mr-2" for="">End Date :&emsp;</label>
+            <input type="date" class="form-control" id="end_date">
+            &emsp;
+       
+          </div>
+  
+          <div class="col col-md-12">
+            <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #02b6ff;">
+          </div>
+  
+          <div class="col col-md-12 table-responsive">
+            <div id="print_content" class="table-responsive">
+              <table class="table table-bordered table-striped table-hover" id="sales_report_div">
+                <thead>
+                  <tr >
+                    <th>SL</th>
+                    <th>Purchase Date</th>
+                    <th>Invoice Number</th>
+                    <th>Supllier Name</th>
+                    <th>Total Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let purch of purchases; index as i;">
+                    <td>{{purch.pid}}</td>
+                    <td>{{purch.pstdate}}</td>
+                    <td>{{purch.pinvonum}}</td>
+                    <td>{{purch.sname}}</td>
+                    <td>{{purch.gtotal}}</td>
+                    
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="4" style="color: green;">&nbsp;Total purchases =</td>
+                    <td class="text-primary">
+  
+                    </td>
+                  </tr>
+                </tfoot>
+  
+              </table>
+            </div>
+          </div>
+  
+          <div class="col-md-12 text-center">
+            <button class="btn btn-primary">Print</button>
+          </div>
+  
+        </div>
+        <!-- form content end -->
+        <hr style="border-top: 2px solid #ff5252;">
+      </div>
+    </div>
+  </div>

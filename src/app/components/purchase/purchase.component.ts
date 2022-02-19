@@ -58,11 +58,9 @@ export class PurchaseComponent implements OnInit {
     const headers = { 'content-type': 'application/json' };
     this.http.post<any>("http://localhost:8082/purchase/save", JSON.stringify(this.purchase), { headers: headers })
       .subscribe(data => {
-        alert("New Medicine Added Successfull")
-        this.purchase = new Purchase();
-        this.isSave = true
+        
       }, err => {
-        alert("Medicine already exist")
+        alert("Medicine Added Failed")
       }
       )
   }
@@ -79,6 +77,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   calculateAmount(pc:Purchase){
+    console.log("munazir");
     pc.amount =pc.quantity * pc.rate;
   }
 

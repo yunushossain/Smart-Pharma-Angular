@@ -1,17 +1,17 @@
 <div class="content-wrapper">
-  <div class=" container-fluid" style="width: 90%;">
+  <div class=" container-fluid" style="width: 98%;">
     <div class="container">
 
       <!-- header section -->
       <div class="container" style="display: flex;">
         <div class="" text-center style=" margin-top: 5px;">
-            <span class="h6"><i class="fa fa-home text-dark"></i></span>
+            <span class="h6"><i class="fa fa-purchase text-dark"></i></span>
 
         </div>
        <div style="margin-left: 20px;">
            
-        <h3>Dashboard</h3>
-        <h4>Home</h4>
+        <h3>Add Purchase</h3>
+        <h6>Add new Purchase</h6>
        </div>
 
 
@@ -75,8 +75,8 @@
           </div>
 
           <div class="row col col-md-12">
-            <div class="col col-md-2 font-weight-bold" style="color: green; cursor:pointer">
-              <i class="fa fa-plus"></i>&nbsp;Add New Supplier
+            <div class="col col-md-2 font-weight-bold" style="color: green; cursor:pointer" routerLink="/supplier">
+              <i class="fa fa-plus" ></i>&nbsp;Add New Supplier
             </div>
           </div>
           <!-- supplier details content end -->
@@ -151,9 +151,9 @@
             </div><br>
             <div class="row col col-md-8">
               <div class="col col-md-4"><label for="mgname" class="font-weight-bold">&nbsp;If new medicine, generic
-                  name : </label></div>
+                  name  </label></div>
               <div class="col col-md-8">
-                <input type="text" class="form-control" placeholder="Generic Name" name="mgname" id="gname"
+                <input type="text" class="form-control" placeholder="Generic Name" name="mgname" id="mgname"
                   [(ngModel)]="purchase.mgname">
 
               </div>
@@ -166,7 +166,7 @@
               <div class="col col-md-10"></div>
               <div class="col col-md-2 form-group float-right">
                 <label class="font-weight-bold" for="gtotal">Grand Total :</label>
-                <input type="text" class="form-control" id="gtotal" name="gtotal" 
+                <input type="text" class="form-control" id="gtotal" name="gtotal"   [(ngModel)]="purchase.gtotal"
                   value="{{purchase.quantity * purchase.rate}}"   disabled>
               </div>
             </div>

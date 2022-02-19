@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ShowInvoice } from '../invoice/showinvoice.model';
 
 @Component({
   selector: 'app-invoicelist',
@@ -7,9 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoicelistComponent implements OnInit {
 
-  constructor() { }
+  showinvoice = new ShowInvoice()
+  showinvoices: any
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+   this. getShowInvoice()
+  }
+
+
+  
+  getShowInvoice() {
+    const headers = { 'content-type': 'application/json' };
+    this.http.get<any>('http://localhost:8082/showinvoice/getAll', { headers })
+      .subscribe(map => {
+        console.log(map.Data);
+        this.showinvoices = map.Data;
+      })
+  }
+
+  
+  // editPurchase(medi: any) {
+  //   this.showinvoice.mname = invo.mname
+  //   this.showinvoice.mgname = medi.mgname
+    
+  //   console.log(this.showinvoice);
+  //   this.router.navigate(['showinvoice'], { state: { invo:  isSave: false } })
+   
+    
+  // }
+
+  deleteShowInvoice(invo: any) {
+    const headers = { 'content-type': 'application/json' };
+    this.http.get("http://localhost:8082/showinvoice/delete/" + invo.id, { headers: headers })
+      .subscribe(data => {
+        this. getShowInvoice();
+      }
+      )
   }
 
 }

@@ -16,6 +16,7 @@
             <tr>
               <th>Customer ID</th>
               <th>Customer Name</th>
+              <th>Customer Email</th>
               <th>Customer Contact</th>
               <th>Customer Address</th>
               <th>Doctor Name</th>
@@ -27,15 +28,16 @@
             <tr *ngFor="let cus of Customer; index as i;">
               <td>{{cus.cid}}</td>
               <td>{{cus.cname}}</td>
+              <td>{{cus.cemail}}</td>
               <td>{{cus.ccontact}}</td>
               <td>{{cus.caddress}}</td>
               <td>{{cus.cdname}}</td>
               <td>{{cus.cdaddress}}</td>
          
               <td>
-                  <button type="button" (click)="editCustomer(cus)" class="btn btn-warning">Edit</button>
-                  ||
-                  <button type="button" (click)="deleteCustomer(cus)" class="btn btn-danger">Delete</button>
+                  <button type="button" (click)="editCustomer(cus)" class="btn btn-warning mr-2"><i class="fa fa-fax"></i></button>
+                  
+                  <button type="button" (click)="deleteCustomer(cus)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
               </td>
           </tr>
           </tbody>

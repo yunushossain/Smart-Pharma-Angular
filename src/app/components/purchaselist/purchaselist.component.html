@@ -2,35 +2,37 @@
   <div class="container-fluid" style="width: 98%;">
     <div class="container">
 
-      <div class="col col-md-12 mt-4">
-        <h1>Manage Purchese</h1>
-      </div>
+
 
       <!-- header section -->
+      <div class="container" style="display: flex;">
+        <div class="" text-center style=" margin-top: 5px;">
+          <!-- <span class="h6"><i class="fa fa-home text-dark"></i></span>-->
 
+        </div>
+        <div style="margin-left: 20px;">
+
+          <h3>Manage Purchase</h3>
+          <h6>Manage Existing purchase</h6>
+        </div>
+
+
+      </div>
       <!-- header section end -->
-
+      <hr style="border-top: 2px solid #ff5252;">
       <!-- form content -->
       <div class="row">
 
         <div class="col-md-12 form-group form-inline">
           <label class="font-weight-bold" for="">Search :&emsp;</label>
-          <input type="number" class="form-control" id="by_voucher_number" placeholder="By Voucher Number"
-            onkeyup="searchPurchase(this.value, 'VOUCHER_NUMBER');">
-          &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name"
-            onkeyup="searchPurchase(this.value, 'SUPPLIER_NAME');">
-          &emsp;<input type="number" class="form-control" id="by_invoice_number" placeholder="By Invoice"
-            onkeyup="searchPurchase(this.value, 'INVOICE_NUMBER');">
-          &emsp;<label class="font-weight-bold" for="">By Purchase Date :&emsp;</label>
-          <input type="date" class="form-control" id="by_purchase_date"
-            onchange="searchPurchase(this.value, 'PURCHASE_DATE');">
+          <input type="number" class="form-control mr-2" id="by_voucher_number" placeholder="By Voucher Number">
+          &emsp;<input type="text" class="form-control mr-2" id="by_suppliers_name" placeholder="By Supplier Name">
+          &emsp;<input type="number" class="form-control mr-2" id="by_invoice_number" placeholder="By Invoice">
+          &emsp;<label class="font-weight-bold mr-2" for="">By Purchase Date :&emsp;</label>
+          <input type="date" class="form-control" id="by_purchase_date">
           &emsp;
-          <select class="form-control" onchange="searchPurchase(this.value, 'PAYMENT_STATUS');">
-            <option value="DUE">DUE</option>
-            <option value="PAID">PAID</option>
-          </select>
-          &emsp;<button class="btn btn-success font-weight-bold" onclick="cancel();"><i
-              class="fa fa-refresh"></i></button>
+
+
         </div>
 
 
@@ -41,34 +43,44 @@
 
         <div class="col col-md-12 table-responsive">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-responsive table-bordered">
               <thead>
                 <tr>
                   <th style="width: 1%;">SL.</th>
-                  <th style="width: 12%;">Voucher Number</th>
-                  <th style="width: 18%;">Supplier Name</th>
                   <th style="width: 12%;">Invoice Number</th>
                   <th style="width: 15%;">Purchase Date</th>
+                  <th style="width: 18%;">Supplier Name</th>
+                  <th style="width: 12%;">Medecine Name</th>
+                  <th style="width: 12%;">Quantity</th>
+                  <th style="width: 12%;">Rate</th>
                   <th style="width: 10%;">Total Amount</th>
-                  <th style="width: 12%;">Payment Status</th>
                   <th style="width: 12%;">Action</th>
                 </tr>
               </thead>
               <tbody id="purchases_div">
                 <tr *ngFor="let purch of purchases; index as i;">
                   <td>{{purch.pid}}</td>
-                  <td>{{purch.pid}}</td>
-                  <td>{{purch.sname}}</td>
                   <td>{{purch.pinvonum}}</td>
                   <td>{{purch.pstdate}}</td>
-                  <td></td>
-                  <td>{{purch.ppaytype}}</td>
-                 
+                  <td>{{purch.sname}}</td>
+                  <td>{{purch.mname}}</td>
+                  <td>{{purch.quantity}}</td>
+                  <td>{{purch.rate}}</td>
+                  <td>{{purch.gtotal}}</td>
+
+
+
+
                   <td>
-                    <button type="buuton" class="btn btn-warning">Edit</button>
-                    ||
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="buuton" (click)="editPurchase(purch)" class="btn btn-warning btn-sm mr-1">
+                      <i class="fa fa-fax"></i>
+                    </button>
+
+                    <button type="button" (click)="deletePurchase(purch)" class="btn btn-danger btn-sm">
+                      <i class="fa fa-trash"></i>
+                    </button>
                   </td>
+
                 </tr>
               </tbody>
             </table>

@@ -44,7 +44,7 @@ export class SupplierlistComponent implements OnInit {
 
   deleteSupplier(sup: any) {
     const headers = { 'content-type': 'application/json' };
-    this.http.get("http://localhost:9988/supplier/delete/" + sup.sid, { headers: headers })
+    this.http.get("http://localhost:8082/supplier/delete/" + sup.sid, { headers: headers })
       .subscribe(data => {
         this.getSupplier();
       }

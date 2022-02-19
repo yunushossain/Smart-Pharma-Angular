@@ -4,6 +4,7 @@ import { findIndex } from 'rxjs';
 import { Customer } from '../customer/customer.model';
 import { Purchase } from '../purchase/purchase.model';
 import { Invoice } from './invoice.motel';
+import { ShowInvoice } from './showinvoice.model';
 
 @Component({
   selector: 'app-invoice',
@@ -23,6 +24,11 @@ export class InvoiceComponent implements OnInit {
   totalAmount: any
   totalDiscount: any
   netTotal: any
+
+  invpaidamount: any
+  invchangeamount: any
+
+  showinvoice = new ShowInvoice()
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -56,7 +62,7 @@ export class InvoiceComponent implements OnInit {
     this.invoice.cemail = customer.cemail
     this.invoice.ccontact = customer.ccontact
     this.invoice.cdname = customer.cdname
-
+    this.showinvoice.customerName = customer.cname
 
   }
 
@@ -75,7 +81,7 @@ export class InvoiceComponent implements OnInit {
     this.allinvoices.push(new Invoice());
   }
 
-  deleterow(i:number) {
+  deleterow(i: number) {
     this.allinvoices.splice(i, 1);
 
   }
@@ -102,7 +108,7 @@ export class InvoiceComponent implements OnInit {
     this.allinvoices[i].invtotal = (this.allinvoices[i].invquantity * this.allinvoices[i].mrp) - this.allinvoices[i].discountamount
 
 
-   this. calculateTotal()
+    this.calculateTotal()
   }
 
 
@@ -117,7 +123,44 @@ export class InvoiceComponent implements OnInit {
       this.totalDiscount += invoice.discountamount
       this.netTotal += invoice.invtotal
     })
+
+   this.calculateChange()
+   
+
   }
+
+  calculateChange(){
+    this.invchangeamount = this.invpaidamount - this.netTotal
+  }
+
+
+  saveInvoice() {
+    const headers = { 'content-type': 'application/json' };
+    this.http.post<any>("http://localhost:8082/invoice/save", JSON.stringify(this.allinvoices), { headers: headers })
+      .subscribe(data => {
+        alert("New Customer Added Successfull")
+
+      }, err => {
+        alert("Medicine already exist")
+      }
+      )
+    this.showinvoice.totalAmount = this.totalAmount
+    this.showinvoice.totalDiscount = this.totalDiscount
+    this.showinvoice.netTotal = this.netTotal
+
+
+
+    this.http.post<any>("http://localhost:8082/showinvoice/save", JSON.stringify(this.showinvoice), { headers: headers })
+      .subscribe(data => {
+        alert("New Customer Added Successfull")
+
+      }, err => {
+        alert("Medicine already exist")
+      }
+      )
+  }
+
+
 
 
 }
