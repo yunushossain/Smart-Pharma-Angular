@@ -53,11 +53,9 @@ export class MedicineComponent implements OnInit {
     const headers = { 'content-type': 'application/json' };
     this.http.post<any>("http://localhost:8082/medicine/save", JSON.stringify(this.medicine), { headers: headers })
       .subscribe(data => {
-        alert("New Medicine Added Successfull")
-        this.medicine = new Medicine();
-        this.isSave = true
+       
       }, err => {
-        alert("Medicine already exist")
+        alert("Medicine Added Failed")
       }
       )
   }

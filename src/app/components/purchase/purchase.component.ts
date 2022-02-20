@@ -76,9 +76,9 @@ export class PurchaseComponent implements OnInit {
       )
   }
 
-  calculateAmount(pc:Purchase){
-    console.log("munazir");
-    pc.amount =pc.quantity * pc.rate;
+  calculateAmount(){
+   
+    this.purchase.amount = this.purchase.quantity * this.purchase.rate;
   }
 
 }

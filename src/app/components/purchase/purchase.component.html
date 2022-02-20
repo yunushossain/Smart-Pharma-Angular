@@ -130,7 +130,7 @@
               </div>
 
               <div class="col col-md-1">
-                <input type="number" class="form-control" (input)="calculateAmount(purchase)" placeholder="0"
+                <input type="number" class="form-control" (input)="calculateAmount()" placeholder="0"
                   name="quantity" id=" quantity" [(ngModel)]="purchase.quantity">
               </div>
 
@@ -139,11 +139,11 @@
               </div>
 
               <div class="col col-md-1">
-                <input type="number" class="form-control" name="rate" [(ngModel)]="purchase.rate">
+                <input type="number" class="form-control" name="rate" (input)="calculateAmount()"  [(ngModel)]="purchase.rate">
               </div>
 
               <div class="row col col-md-3">
-                <div class="col col-md-7"><input type="text" class="form-control" id="amount" name="amount"
+                <div class="col col-md-7"><input type="text" class="form-control" id="amount" name="amount"  [(ngModel)]="purchase.amount"
                     value="{{purchase.quantity * purchase.rate}}" disabled>
                 </div>
 
@@ -166,7 +166,7 @@
               <div class="col col-md-10"></div>
               <div class="col col-md-2 form-group float-right">
                 <label class="font-weight-bold" for="gtotal">Grand Total :</label>
-                <input type="text" class="form-control" id="gtotal" name="gtotal"   [(ngModel)]="purchase.gtotal"
+                <input type="text" class="form-control" id="gtotal" name="gtotal" [(ngModel)]="purchase.amount"
                   value="{{purchase.quantity * purchase.rate}}"   disabled>
               </div>
             </div>

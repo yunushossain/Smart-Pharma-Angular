@@ -30,9 +30,7 @@ export class SupplierComponent implements OnInit {
     const headers = { 'content-type': 'application/json' };
     this.http.post<any>("http://localhost:8082/supplier/save", JSON.stringify(this.supplier), { headers: headers })
       .subscribe(data => {
-      alert("New Suppiler Added Successfull")
-      this.supplier = new Supplier();
-      this.isSave = true
+     
       },err =>{
         alert("Supplier already exist")
      }
